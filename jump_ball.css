@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* 禁止页面滚动 */
+}
+
+/* 容器样式：改为全屏 */
+.game-container {
+    width: 100vw; /* 宽度=屏幕宽度 */
+    height: 100vh; /* 高度=屏幕高度 */
+    border: none; /* 移除边框（可选，全屏通常不需要边框） */
+    margin: 0; /* 移除居中margin */
+    position: relative;
+    background-color: #0a0a2a; /* 夜空底色 */
+    overflow: hidden;
+}
+
+/* 全屏星空第一层（密集小星） */
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 增加星星数量，分布更密集，适应全屏 */
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(1px 1px at 160px 120px, #fff, transparent),
+        radial-gradient(2px 2px at 220px 150px, #fff, transparent),
+        radial-gradient(1px 1px at 260px 190px, #fff, transparent),
+        radial-gradient(1px 1px at 20px 230px, #fff, transparent),
+        radial-gradient(1px 1px at 60px 280px, #fff, transparent),
+        radial-gradient(1px 1px at 100px 330px, #fff, transparent),
+        radial-gradient(1px 1px at 140px 370px, #fff, transparent),
+        radial-gradient(2px 2px at 180px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 220px 90px, #fff, transparent),
+        radial-gradient(1px 1px at 260px 140px, #fff, transparent),
+        /* 新增更多星星，覆盖全屏 */
+        radial-gradient(1px 1px at 300px 200px, #fff, transparent),
+        radial-gradient(2px 2px at 350px 250px, #fff, transparent),
+        radial-gradient(1px 1px at 400px 300px, #fff, transparent),
+        radial-gradient(1px 1px at 450px 350px, #fff, transparent),
+        radial-gradient(2px 2px at 500px 400px, #fff, transparent),
+        radial-gradient(1px 1px at 550px 100px, #fff, transparent),
+        radial-gradient(1px 1px at 600px 150px, #fff, transparent),
+        radial-gradient(1px 1px at 650px 200px, #fff, transparent),
+        radial-gradient(2px 2px at 700px 250px, #fff, transparent),
+        radial-gradient(1px 1px at 750px 300px, #fff, transparent);
+    background-repeat: repeat;
+    animation: twinkle 2s infinite;
+}
+
+/* 全屏星空第二层（稀疏亮星） */
+.game-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(3px 3px at 70px 120px, #fff, transparent),
+        radial-gradient(4px 4px at 150px 170px, #fff, transparent),
+        radial-gradient(3px 3px at 200px 250px, #fff, transparent),
+        radial-gradient(2px 2px at 50px 320px, #fff, transparent),
+        radial-gradient(3px 3px at 240px 360px, #fff, transparent),
+        /* 新增全屏亮星 */
+        radial-gradient(4px 4px at 400px 100px, #fff, transparent),
+        radial-gradient(3px 3px at 500px 200px, #fff, transparent),
+        radial-gradient(4px 4px at 600px 300px, #fff, transparent),
+        radial-gradient(3px 3px at 700px 400px, #fff, transparent),
+        radial-gradient(4px 4px at 800px 150px, #fff, transparent);
+    background-repeat: repeat;
+    animation: twinkle 3s infinite;
+    animation-delay: 1s;
+}
+
+/* 星星闪烁动画 */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* 小球样式：调整为全屏居中 */
+.ball {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ff4444;
+    position: absolute;
+    bottom: 0;
+    /* 水平居中（适配任何屏幕宽度） */
+    left: 50%;
+    transform: translateX(-50%); /* 向左偏移自身一半宽度，实现完美居中 */
+    transition: bottom 0.3s ease;
+}
+
+ /* 小球粒子动画 */
+@keyframes particle {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
