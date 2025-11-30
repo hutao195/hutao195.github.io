@@ -86,21 +86,40 @@ body {
 }
 
 /* 小球样式：调整为全屏居中 */
+
 .ball {
-    width: 50px;
-    height: 50px;
+    width: 5vw;       /* 使用视窗宽度百分比 */
+    height: 5vw;      /* 保持宽高一致 */
+    max-width: 50px;  /* 最大不超过50px */
+    max-height: 50px; /* 最大不超过50px */
+    min-width: 30px;  /* 最小不小于30px */
+    min-height: 30px; /* 最小不小于30px */
     border-radius: 50%;
     background-color: #ff4444;
     position: absolute;
     bottom: 0;
-    /* 水平居中（适配任何屏幕宽度） */
     left: 50%;
-    transform: translateX(-50%); /* 向左偏移自身一半宽度，实现完美居中 */
+    transform: translateX(-50%);/* 水平居中 */
     transition: bottom 0.3s ease;
 }
 
- /* 小球粒子动画 */
-@keyframes particle {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(3); opacity: 0; }
+/* 流星样式 */
+.meteor {
+    position: absolute;
+    pointer-events: none; /* 避免遮挡小球交互 */
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.8), rgba(255,255,255,0));
+    border-radius: 50%;
+    z-index: 1; /* 确保流星在星星上层、小球下层 */
+}
+
+/* 流星动画（保留原有逻辑，参数通过JS动态调整） */
+@keyframes meteor-fall {
+    0% {
+        opacity: 1;
+        transform: rotate(var(--angle)) translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(var(--angle)) translateX(var(--distance));
+    }
 }
